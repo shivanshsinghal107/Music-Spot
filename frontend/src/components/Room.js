@@ -21,7 +21,7 @@ export default class Room extends Component {
     }
 
     getRoomDetails() {
-        fetch('/api/get-room' + '?code=' + this.roomCode)
+        return fetch('/api/get-room' + '?code=' + this.roomCode)
         .then((response) => {
             if(!response.ok){
                 this.props.leaveRoomCallback();
@@ -43,8 +43,7 @@ export default class Room extends Component {
             method: "POST",
             headers: { "Content-Type": "application/json" },
         };
-        fetch('/api/leave-room', requestOptions)
-        .then((_response) => {
+        fetch('/api/leave-room', requestOptions).then((_response) => {
             this.props.leaveRoomCallback();
             this.props.history.push("/");
         });
@@ -64,8 +63,8 @@ export default class Room extends Component {
                         update={true}
                         votesToSkip={this.state.votesToSkip}
                         guestCanPause={this.state.guestCanPause}
-                        roomCode={this.state.roomCode}
-                        updateCallback={() => {}}
+                        roomCode={this.roomCode}
+                        updateCallback={this.getRoomDetails}
                     />
                 </Grid>
                 <Grid item xs={12} align="center">
@@ -99,17 +98,17 @@ export default class Room extends Component {
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Gaana Skip Kar Sakte - {this.state.guestCanPause ? "Haan" : "Bhagg"}
+                    Guest Can Pause: {this.state.guestCanPause.toString()}
                 </Typography>
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Gaana Skip Krne Ko - {this.state.votesToSkip} log
+                    Votes to skip: {this.state.votesToSkip}
                 </Typography>
             </Grid>
             <Grid item xs={12} align="center">
                 <Typography variant="h6" component="h6">
-                    Host Tu Hai - {this.state.isHost.toString() ? "Haan" : "Nikal"}
+                    Host: {this.state.isHost.toString()}
                 </Typography>
             </Grid>
             {this.state.isHost ? this.renderSettingsButton() : null}
