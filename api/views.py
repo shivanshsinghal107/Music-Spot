@@ -94,13 +94,13 @@ class LeaveRoom(APIView):
                 room = room_results[0]
                 room.delete()
         
-        return Response({'Message': 'Leaved Room Successfully'}, status = status.HTTP_200_OK)
+        return Response({'message': 'Leaved Room Successfully'}, status = status.HTTP_200_OK)
 
 class UpdateRoom(APIView):
     serializer_class = UpdateRoomSerializer
 
     def patch(self, request, format = None):
-        if self.request.session.exists(self.request.session.session_key):
+        if not self.request.session.exists(self.request.session.session_key):
             self.request.session.create()
 
         serializer = self.serializer_class(data = request.data)
