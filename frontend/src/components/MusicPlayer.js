@@ -10,6 +10,22 @@ export default class MusicPlayer extends Component {
         super(props);
     }
 
+    prevSong() {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        };
+        fetch("/spotify/prev-song", requestOptions);
+    }
+
+    nextSong() {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        };
+        fetch("/spotify/next-song", requestOptions);
+    }
+
     pauseSong() {
         const requestOptions = {
             method: "PUT",
@@ -42,7 +58,7 @@ export default class MusicPlayer extends Component {
                             {this.props.artist}
                         </Typography>
                         <div>
-                        <IconButton>
+                            <IconButton onClick={() => this.prevSong()}>
                                 <SkipPreviousIcon />
                             </IconButton>
                             <IconButton onClick={() => {
@@ -50,7 +66,8 @@ export default class MusicPlayer extends Component {
                             }}>
                                 {this.props.is_playing ? <PauseIcon /> : <PlayArrowIcon />}
                             </IconButton>
-                            <IconButton>
+                            <IconButton onClick={() => this.nextSong()}>
+                                {this.props.votes} / {this.props.votes_required}
                                 <SkipNextIcon />
                             </IconButton>
                         </div>
