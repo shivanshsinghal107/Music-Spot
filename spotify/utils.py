@@ -20,7 +20,7 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
     expires_in = timezone.now() + timedelta(seconds = expires_in)
 
     if tokens:
-        print(f"{access_token}\n{token_type}\n{expires_in}\n{refresh_token}")
+        # print(f"{access_token}\n{token_type}\n{expires_in}\n{refresh_token}")
         tokens.access_token = access_token
         tokens.token_type = token_type
         tokens.expires_in = expires_in
@@ -63,7 +63,8 @@ def refresh_spotify_token(session_id):
 
 def execute_spotify_api_request(session_id, endpoint, post_ = False, put_ = False):
     tokens = get_user_tokens(session_id)
-    headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + tokens.access_token}
+    headers = {'Content-Type': 'application/json',
+               'Authorization': 'Bearer ' + tokens.access_token}
 
     if post_:
         post(BASE_URL + endpoint, headers = headers)
@@ -82,3 +83,9 @@ def pause_song(session_id):
 
 def play_song(session_id):
     return execute_spotify_api_request(session_id, "player/play", put_ = True)
+
+def skip_song(session_id):
+    return execute_spotify_api_request(session_id, "player/next", post_=True)
+
+def prev_song(session_id):
+    return execute_spotify_api_request(session_id, "player/previous", post_=True)
