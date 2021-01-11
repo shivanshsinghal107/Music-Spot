@@ -1,5 +1,16 @@
 # Music-Spot
-A full stack django-react app which uses spotify API to let users create and join music rooms for partying &amp; chilling
+- A full-stack Django-React app that uses Spotify API to let users create and join music rooms for partying &amp; chilling.
+- The app is a multi-person controlled music player that can be enjoyed on a Local Area Network(LAN).
+- The music in the app plays in the Spotify app and not in the web app.
+- The app allows users to cast vote for skipping a song.
+- The host needs to have Spotify Premium to access the functionality of pausing/skipping a song.
+
+## Tech Stack
+- Python
+- JavaScript
+- Django
+- React.js
+- Spotify API
 
 ## Steps to run
 - Open terminal and run the below command<br>
