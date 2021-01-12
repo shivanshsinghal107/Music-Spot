@@ -1,4 +1,4 @@
-# Music-Spot
+# Music-Spot [(YouTube Playlist)](https://www.youtube.com/playlist?list=PLzMcBGfZo4-kCLWnGmK0jUBmGLaJxvi4j)
 ![Music Spot](images/collage1.jpg)
 - A full-stack Django-React app that uses Spotify API to let users create and join music rooms for partying &amp; chilling.
 - The app is a multi-person controlled music player that can be enjoyed on a Local Area Network(LAN).
