@@ -29,7 +29,7 @@ export default class Home extends Component {
             <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
                     <Typography variant="h3" component="h3">
-                        Nacho BC
+                        Music Spot
                     </Typography>
                 </Grid>
                 <Grid item xs={12} align="center">
